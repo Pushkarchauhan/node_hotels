@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config()
 
-const mongoUrl = 'mongodb://0.0.0.0:27017/pushkar'
-
+const mongoUrl = process.env.DB_URL;
 
 
 
@@ -10,7 +10,7 @@ mongoose.connect(mongoUrl);
 const db = mongoose.connection;
 
 db.on('connected', () => {
-    console.log('MongoDB connected')
+    console.log('MongoDB  connected')
 })
 
 
