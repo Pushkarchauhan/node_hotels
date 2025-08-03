@@ -8,8 +8,16 @@ const bodyParser = require("body-parser");
 const personRoutes = require("./routers/personRoutes.js");
 app.use(bodyParser.json());
 
-app.get("/", function (req, res) {
+//Middleware function 
+
+const logRequest = (req,res,next) => {
+  console.log(`${new Date().toLocaleString()}  Request Made to: ${req.orignalUrl}`)
+  next();
+}
+
+app.get("/", logRequest , function (req, res) {
   res.send("Welcome to my hotel what can i do for you sir ?? ");
+  
 });
 
 
@@ -22,6 +30,5 @@ const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
   console.log("Server is running on port 3000");
 });
-
 
 
